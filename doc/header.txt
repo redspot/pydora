@@ -1,0 +1,44 @@
+[
+(u'itunesSongUrl', u'http://itunes.apple.com/album/clubbed-to-death/id315429925?i=315430085&uo=5&at=11l3Hh&ct=Pandora+One+Desktop'),
+(u'songRating', 1),
+(u'amazonAlbumAsin', u'B001XURI1U'),
+(u'audioUrlMap',
+    {
+    u'mediumQuality': 
+        {
+        u'audioUrl': u'http://audio-ch1-t1-2.pandora.com/access/2414403713058922871.mp4?version=4&lid=281662988&token=bgVGrTXzJqzD4%2Fr8Kh80AGSiqLF94RE6lP581CqufRMNaBjSAuhyY1YY4hpHxO3HBS68%2Bu9I6ABFuVFhNsJrdwf7yxw0BCsc09hKVDxBqTyxIT3b3NxfzHUsOiwCgZLRzZ%2B0oeHu4pu1%2F4rG6UpbLIe5%2Fnl31WZyg7EY6ZN5sj0vYXb4xm6%2BtPoYh3aquHNu0tHvn6mFa8xb6c22TJULUliOaS82AioShbn18wxqmBFlvavAaYsZ0aAVvFGzksPW2%2FkoQsPMVzuHbKiIuNubvXNuAFjLJdNsFtf7fY5wq27jUusq38Y3KJVZ4oOVsmCtOhRN1xC9VZ6LheclX0v2FhY%2BsSJBIrXXjtlzAAoHZV0E1EcEm3GmC4K8gYqzqSzA',
+        u'bitrate': u'64',
+        u'protocol': u'http',
+        u'encoding': u'aacplus'
+        },
+    u'highQuality': 
+        {
+        u'audioUrl': u'http://t1-1.p-cdn.com/access/6271287464624691411.mp3?version=4&lid=281662988&token=bgVGrTXzJqzD4%2Fr8Kh80AGSiqLF94RE6lP581CqufRMNaBjSAuhyY1YY4hpHxO3HBS68%2Bu9I6ABFuVFhNsJrdwf7yxw0BCsc09hKVDxBqTyxIT3b3NxfzHUsOiwCgZLRzZ%2B0oeHu4pu1%2F4rG6UpbLIe5%2Fnl31WZyg7EY6ZN5sj0vYXb4xm6%2BtPoYh3aquHNu0tHvn6mFa8xb6c22TJULUliOaS82AioShbn18wxqmBFlvavAaYsZ0aAVvFGzksPW2%2FkoQsPMVzuHbKiIuNubvWRo5wlN6TeZAwPGH46LlJlHkLVr5KA%2BIIOOe5k9jzMu2nq0F%2F8%2B2xIt0gMSAKiHUKn8YH4K2VZghkW%2FIl72db85Am4iM5JHNw%3D%3D',
+        u'bitrate': u'192',
+        u'protocol': u'http',
+        u'encoding': u'mp3'
+        }
+    }),
+(u'shareLandingUrl', u'http://www.pandora.com/escala/escala/clubbed-to-death?shareImp=true'),
+(u'amazonAlbumDigitalAsin', u'B002A5WO8O'),
+(u'trackToken', u'05e100db653f3d60ed626e7579a65bb12b07a1a4d5ae9c24fff0eefb6ca087eb3f61db32a5d709c99d9f713ad55045683c77da740c095a5a4bda6b041227389c'),
+(u'amazonSongDigitalAsin', u'B002A5WOSY'),
+(u'songName', u'Clubbed To Death'),
+(u'albumIdentity', u'afe6bfb9f9161c2214393230ccdc843a'),
+(u'amazonAlbumUrl', u'http://www.amazon.com/dp/B001XURI1U/?tag=wwwpandoracom-20'),
+(u'albumDetailUrl', u'http://www.pandora.com/escala/escala?dc=175&ad=0:35:1:30144::0:0:0:0:524:047:GA:13067:2:0:0:0:0:0'),
+(u'songIdentity', u'427f48244fdb8755c17a777d02efc118'),
+(u'stationId', u'423632884046878220'),
+(u'trackGain', u'-5.22'),
+(u'songDetailUrl', u'http://www.pandora.com/escala/escala/clubbed-to-death?dc=175&ad=0:35:1:30144::0:0:0:0:524:047:GA:13067:2:0:0:0:0:0'),
+(u'albumName', u'Escala'),
+(u'programDescriptor', u''),
+(u'allowFeedback', True),
+(u'categoryDescriptor', u''),
+(u'artistName', u'Escala'),
+(u'albumArtUrl', u'http://cont-2.p-cdn.com/images/public/amz/6/2/3/2/886974742326_500W_498H.jpg'),
+(u'artistExplorerUrl', u'http://www.pandora.com/xml/music/artist/escala?explicit=false'),
+(u'artistDetailUrl', u'http://www.pandora.com/escala?dc=175&ad=0:35:1:30144::0:0:0:0:524:047:GA:13067:2:0:0:0:0:0'),
+(u'albumExplorerUrl', u'http://www.pandora.com/xml/music/album/escala/escala?explicit=false'),
+(u'songExplorerUrl', u'http://www.pandora.com/xml/music/song/escala/escala/clubbed-to-death?explicit=false')
+]

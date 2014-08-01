@@ -1,0 +1,8 @@
+Pre-requisites:
+python-pandora
+requests
+
+config file:
+user = complaints@riaa.org
+password = CopyrightsAreForever
+audio_file_dir = /my/file/server

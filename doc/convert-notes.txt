@@ -1,0 +1,5 @@
+volume=`exiftool -a -All -s "$1" | awk '/ReplaygainTrackGain/ { print $3 }'`
+echo "ReplayGain Track Gain = ${volume}dB" >&2
+/var/madsonic/transcode/ffmpeg -i "${1}" -ab "${2}k" -v warning -vn -f mp3 -filter "volume=${volume}dB" -
+
+bin/ffmpeg -i Korn-Falling_Away_From_Me.mp3 -c:a libfdk_aac -filter "volume=-4.64dB" -filter "bass=g=-15" -vbr 1 Korn-Falling_Away_From_Me.m4a
