@@ -3,3 +3,5 @@ echo "ReplayGain Track Gain = ${volume}dB" >&2
 /var/madsonic/transcode/ffmpeg -i "${1}" -ab "${2}k" -v warning -vn -f mp3 -filter "volume=${volume}dB" -
 
 bin/ffmpeg -i Korn-Falling_Away_From_Me.mp3 -c:a libfdk_aac -filter "volume=-4.64dB" -filter "bass=g=-15" -vbr 1 Korn-Falling_Away_From_Me.m4a
+bin/ffmpeg -hide_banner -i pipe: -c:a libfdk_aac -loglevel quiet pipe:
+~/bin/ffmpeg -hide_banner -i m4a/Motley_Crue-Wild_Side.mp3 -c:a libfdk_aac -profile:a aac_he_v2 -b:a 64k -af "volume=-8.7dB" -af "bass=g=-15" m4a/Motley_Crue-Wild_Side.m4a

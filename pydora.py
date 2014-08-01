@@ -5,6 +5,40 @@ import pandora
 import requests
 import time
 import random
+from mutagen.mp3 import MP3
+from mutagen.easyid3 import EasyID3
+from mutagen.id3 import ID3, APIC, error as id3_error
+
+
+def add_id3_tag(path, artist, album, title):
+    mp3 = EasyID3()
+    mp3['artist'] = artist
+    mp3['album'] = album
+    mp3['title'] = title
+    mp3.save(path)
+
+
+def add_id3_art(path, url):
+    try:
+        art = requests.get(url)
+        art.raise_for_status()
+
+        mp3 = MP3(path, ID3=ID3)
+        art_tag = APIC()
+        art_tag.encoding = 3
+        art_tag.type = 3
+        art_tag.desc = u"Album Cover"
+        if url.endswith('png'):
+            art_tag.mime = u"image/png"
+        else:
+            art_tag.mime = u"image/jpeg"
+        art_tag.data = art.content
+        mp3.tags.add(art_tag)
+        mp3.save()
+    except requests.exceptions.RequestException:
+        return
+    except id3_error:
+        return
 
 CONFIG_PATH = '~/.config/pianobarfly/config'
 
@@ -25,13 +59,17 @@ for station in pan.stations:
 
 for _ in range(10):
     song = pan.get_next_song()
-    artist = song['artistName'].replace('/', '-')
-    songname = song['songName'].replace('/', '-')
-    album = song['albumName'].replace('/', '-')
+    artist = song['artistName']
+    songname = song['songName']
+    album = song['albumName']
     rating = song['songRating']
     gain = song['trackGain']
     url = song['audioUrlMap']['highQuality']['audioUrl']
-    path_fmt = "{}/{}/{}-{}".format(artist, album, artist, songname)
+    art_url = song['albumArtUrl']
+    artist_fmt = song['artistName'].replace('/', '-').encode('utf8', errors='ignore')
+    title = song['songName'].replace('/', '-').encode('utf8', errors='ignore')
+    album_fmt = song['albumName'].replace('/', '-').encode('utf8', errors='ignore')
+    path_fmt = "{}/{}/{}-{}".format(artist_fmt, album_fmt, artist_fmt, title)
     path_fmt = path_fmt.replace(' ', '_')
     short_name = path_fmt + ".mp3"
     new_name = path_fmt + ".m4a"
@@ -52,6 +90,8 @@ for _ in range(10):
             # print "writing file", long_path
             with open(long_path, 'wb') as fd:
                 fd.write(response.content)
+            add_id3_tag(long_path, artist, album, songname)
+            add_id3_art(long_path, art_url)
     except os.error:
         continue
     except requests.exceptions.RequestException:
