@@ -1,4 +1,5 @@
 import os
+import sys
 from StringIO import StringIO
 from ConfigParser import RawConfigParser
 import pandora
@@ -41,7 +42,8 @@ def add_id3_art(path, url):
         return
 
 CONFIG_PATH = '~/.config/pianobarfly/config'
-
+if len(sys.argv)>=2:
+    CONFIG_PATH=sys.argv[1]
 conf_str = open(os.path.expanduser(CONFIG_PATH)).read()
 conf_buf = StringIO('[pydora]\n' + conf_str)
 conf = RawConfigParser()
@@ -49,11 +51,13 @@ conf.readfp(conf_buf)
 auth_user = conf.get('pydora', 'user')
 auth_pass = conf.get('pydora', 'password')
 audio_dir = conf.get('pydora', 'audio_file_dir')
-
+rating_path = conf.getboolean('pydora', 'rating_path') 
 pan = pandora.Pandora()
 pan.authenticate(auth_user, auth_pass)
+stationMap={}
 
 for station in pan.stations:
+    stationMap[station[u'stationId']]=station[u'stationName']
     if station['isQuickMix']:
         pan.switch_station(station)
 
@@ -69,7 +73,10 @@ for _ in range(10):
     artist_fmt = song['artistName'].replace('/', '-').encode('utf8', errors='ignore')
     title = song['songName'].replace('/', '-').encode('utf8', errors='ignore')
     album_fmt = song['albumName'].replace('/', '-').encode('utf8', errors='ignore')
-    path_fmt = "{}/{}/{}-{}".format(artist_fmt, album_fmt, artist_fmt, title)
+    if rating_path:
+        path_fmt = "{}/{}/{}/{}-{}".format(rating,artist_fmt, album_fmt, artist_fmt, title)
+    else:
+        path_fmt = "{}/{}/{}-{}".format(artist_fmt, album_fmt, artist_fmt, title)
     path_fmt = path_fmt.replace(' ', '_')
     short_name = path_fmt + ".mp3"
     new_name = path_fmt + ".m4a"
@@ -91,7 +98,9 @@ for _ in range(10):
             with open(long_path, 'wb') as fd:
                 fd.write(response.content)
             add_id3_tag(long_path, artist, album, songname)
-            add_id3_art(long_path, art_url)
+            add_id3_art( long_path, art_url)
+    	    with open(os.path.join(audio_dir,stationMap[song["stationId"]]+".m3u"),"a") as playlist:
+                playlist.write(short_name+"\n")
     except os.error:
         continue
     except requests.exceptions.RequestException:
